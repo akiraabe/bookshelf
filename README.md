@@ -1,5 +1,9 @@
 # bookshelf
 
+## See details
+(Lang : Japanese)
+http://qiita.com/akiraabe/items/0ae812eb3a5b2288da3a
+
 ## use IntelliJ IDEA
 
 - pull from GitHub
