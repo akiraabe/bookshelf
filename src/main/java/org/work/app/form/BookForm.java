@@ -1,6 +1,7 @@
 package org.work.app.form;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Data
 public class BookForm implements Serializable {
 
+    @NotBlank
     private String title;
     private String publisher;
     private String author;
