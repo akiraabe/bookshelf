@@ -18,6 +18,9 @@ public class BookService {
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    CategoryService categoryService;
+
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
@@ -27,6 +30,15 @@ public class BookService {
     }
 
     public void register(Book book) {
+        book.setCategoryList(categoryService.prepare(book.getCategories()));
         bookRepository.save(book);
+    }
+
+    public List<Book> findByCategoryList_name(String categoryName) {
+        if (categoryName.isEmpty()) {
+            return this.findAll();
+        } else {
+            return bookRepository.findByCategoryList_name(categoryName);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package org.work.app.controller;
 
-import com.sun.org.apache.regexp.internal.REUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.work.app.form.BookForm;
 import org.work.domain.model.Book;
+import org.work.domain.repository.BookRepository;
 import org.work.domain.service.BookService;
 
 import java.util.List;
@@ -26,6 +26,9 @@ public class BookController {
 
     @Autowired
     BookService bookService;
+
+    @Autowired
+    BookRepository repository;
 
     @ModelAttribute
     BookForm setUpForm() {
@@ -45,8 +48,8 @@ public class BookController {
         return "book/input";
     }
 
-    @RequestMapping(value = "/create" , method = RequestMethod.POST)
-    String create(@Validated BookForm form, BindingResult result, Model model , RedirectAttributes attributes) {
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    String create(@Validated BookForm form, BindingResult result, Model model, RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
             return "book/input";
@@ -57,6 +60,13 @@ public class BookController {
 
         return "redirect:";
 
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    String search(@Validated BookForm form, BindingResult result, Model model, RedirectAttributes attributes) {
+
+        model.addAttribute("books", bookService.findByCategoryList_name(form.getCategoryName()));
+        return "book/list";
     }
 
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)

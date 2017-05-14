@@ -12,9 +12,10 @@ import java.util.Date;
 @Data
 public class BookForm implements Serializable {
 
-    @NotBlank
     private String title;
     private String publisher;
     private String author;
     private Date publishDate;
+    private String categories;
+    private String categoryName;
 }
