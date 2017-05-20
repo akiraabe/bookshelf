@@ -32,7 +32,6 @@
 
     <div th:each="detail : ${books}">
         <a th:href="@{'/book/show/' + ${detail.id}}"><span th:text="${detail.id}"></span></a>
-        <span th:text="${detail.id}">Book id</span>
         <span th:text="${detail.title}">hogehoge</span>
         <span th:text="${detail.author}">author</span>
         <span th:text="${detail.publisher}">publisher</span>

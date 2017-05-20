@@ -75,4 +75,27 @@ public class BookController {
         model.addAttribute("book", bookService.getOne(id));
         return "book/show";
     }
+
+    @RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+    public String modify(@PathVariable Long id, Model model) {
+
+        System.out.println("BookController#modify");
+        model.addAttribute("book", bookService.getOne(id));
+        return "book/modify";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    String edit(@Validated BookForm form, BindingResult result, Model model, RedirectAttributes attributes) {
+
+        if (result.hasErrors()) {
+            return "book/modify";
+        }
+
+        System.out.println("BookController#edit =>" + form);
+        Book book = new Book(form);
+        bookService.edit(book);
+
+        return "redirect:";
+
+    }
 }

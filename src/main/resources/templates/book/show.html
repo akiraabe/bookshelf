@@ -31,8 +31,12 @@
                 <td>Publish date :</td>
                 <td th:text="*{publishDate}">2017-04-29</td>
             </tr>
+            <tr>
+                <td>Categories :</td>
+                <td th:text="*{categories}">Java, web, 入門,</td>
+            </tr>
         </table>
-
+        <a th:href="@{'/book/modify/' + ${id}}">Modify</a>
     </div>
     </p>
 </section>

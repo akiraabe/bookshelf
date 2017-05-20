@@ -51,10 +51,18 @@ public class Book {
     }
 
     public Book(String title, String publisher, String author, Date publishDate) {
-        System.out.println("Book#constructor");
         this.title = title;
         this.publisher = publisher;
         this.author = author;
         this.publishDate = publishDate;
+    }
+
+    public String getCategories() {
+        StringBuilder sb = new StringBuilder();
+        for (Category category : this.categoryList) {
+            sb.append(category.getName());
+            sb.append(", ");
+        }
+        return sb.toString();
     }
 }
