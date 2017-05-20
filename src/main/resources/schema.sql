@@ -12,6 +12,7 @@ CREATE TABLE if not exists book
   publish_date date,
   publisher character varying(255),
   title character varying(255),
+  version  bigint,
   CONSTRAINT book_pkey PRIMARY KEY (id)
 )
 WITH (
