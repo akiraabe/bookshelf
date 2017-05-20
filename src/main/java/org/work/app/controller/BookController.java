@@ -37,7 +37,7 @@ public class BookController {
 
     @RequestMapping(method = RequestMethod.GET)
     String list(Model model) {
-        List<Book> books = bookService.findAll();
+        List<Book> books = bookService.findAllSortedBy("title");
         if (books != null) books.forEach(System.out::println);
         model.addAttribute("books", books);
         return "book/list";
@@ -85,7 +85,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    String edit(@Validated BookForm form, BindingResult result, Model model, RedirectAttributes attributes) {
+    public String edit(@Validated BookForm form, BindingResult result, Model model, RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
             return "book/modify";
@@ -97,5 +97,11 @@ public class BookController {
 
         return "redirect:";
 
+    }
+
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    public String remove(@PathVariable Long id, Model model) {
+        bookService.remove(id);
+        return this.list(model);
     }
 }

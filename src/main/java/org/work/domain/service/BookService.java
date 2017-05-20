@@ -1,6 +1,7 @@
 package org.work.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.work.domain.model.Book;
 import org.work.domain.repository.BookRepository;
@@ -24,6 +25,9 @@ public class BookService {
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
+    public List<Book> findAllSortedBy(String... fields) {
+        return bookRepository.findAll(new Sort(fields));
+    }
 
     public Book getOne(Long id) {
         return bookRepository.getOne(id);
@@ -44,5 +48,9 @@ public class BookService {
 
     public void edit(Book book) {
         this.register(book);
+    }
+
+    public void remove(Long id) {
+        bookRepository.delete(id);
     }
 }
