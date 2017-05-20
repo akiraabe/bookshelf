@@ -52,6 +52,8 @@
             </label> <input type="text" class="form-control" id="categories"
                             name="categories" th:field="*{categories}" value="*{categories}"/>
             <br/>
+            <input type="hidden" id="id" name="id" th:field="*{id}" value="*{id}" />
+            <input type="hidden" id="version" name="version" th:field="*{version}" value="*{version}" />
 
             <button type="submit" class="btn btn-primary">Save</button>
             <button type="reset" class="btn">Reset</button>

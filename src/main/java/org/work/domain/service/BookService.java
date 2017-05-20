@@ -26,11 +26,7 @@ public class BookService {
     }
 
     public Book getOne(Long id) {
-        // Test for lazy loading
-        Book book = bookRepository.getOne(id);
-        book.getCategoryList().forEach(System.out::println);
-        return book;
-//        return bookRepository.getOne(id);
+        return bookRepository.getOne(id);
     }
 
     public void register(Book book) {
@@ -47,8 +43,6 @@ public class BookService {
     }
 
     public void edit(Book book) {
-        System.out.println("BookService#edit");
-        System.out.println(book);
-        //this.register(book);
+        this.register(book);
     }
 }

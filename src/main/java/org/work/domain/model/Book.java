@@ -22,29 +22,27 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotBlank
     private String title;
-
     private String publisher;
-
     private String author;
-
     @Temporal(value = TemporalType.DATE)
     private Date publishDate;
-
     @OneToMany
     private List<Category> categoryList;
-
     @Transient
     private String categories;
+    @Version
+    private Long version;
 
     public Book(BookForm form) {
+        this.id = form.getId();
         this.title = form.getTitle();
         this.publisher = form.getPublisher();
         this.author = form.getAuthor();
         this.publishDate = form.getPublishDate();
         this.categories = form.getCategories();
+        this.version = form.getVersion();
     }
 
     public Book() {
@@ -58,10 +56,17 @@ public class Book {
     }
 
     public String getCategories() {
+        if (this.categoryList == null) {
+            return this.categories;
+        }
         StringBuilder sb = new StringBuilder();
+        int i = 0;
         for (Category category : this.categoryList) {
             sb.append(category.getName());
-            sb.append(", ");
+            if (i != this.categoryList.size()-1) {
+                sb.append(", ");
+            }
+            i++;
         }
         return sb.toString();
     }
