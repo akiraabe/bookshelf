@@ -1,9 +1,10 @@
 package org.work.domain.model;
 
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 
 /**
@@ -21,7 +22,12 @@ public class BookTest {
         book.setPublisher("ORAILEY");
         book.setPublishDate(null);
 
-        assertThat(book.getId(), is(1L));
+        SoftAssertions softly = new SoftAssertions();
+
+        softly.assertThat(book.getId()).as("case1 id").isEqualTo(1L);
+        softly.assertThat(book.getTitle()).as("case2 title").isEqualTo("Domain Driven Design");
+        softly.assertThat(book.getAuthor()).as("case3 author").isEqualTo("Eric Evans");
+        softly.assertAll();
     }
 
 }
