@@ -18,6 +18,11 @@ import org.work.domain.service.BookService;
 import java.util.List;
 
 /**
+ * BookController.
+ * <pre>
+ *     Controller class for Book domain.
+ * </pre>
+ *
  * Created by akiraabe on 2017/04/29.
  */
 @Controller
@@ -26,9 +31,6 @@ public class BookController {
 
     @Autowired
     BookService bookService;
-
-    @Autowired
-    BookRepository repository;
 
     @ModelAttribute
     BookForm setUpForm() {
