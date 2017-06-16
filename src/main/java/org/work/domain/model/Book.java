@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Domain object of book.
  * Created by akiraabe on 2017/04/29.
  */
 @Data

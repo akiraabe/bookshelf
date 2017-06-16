@@ -63,4 +63,8 @@ public class BookService {
     public void remove(Long id) {
         bookRepository.delete(id);
     }
+
+    public List<Book> findByTitle(String name) {
+        return bookRepository.findByTitle(name);
+    }
 }

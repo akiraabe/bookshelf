@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.work.domain.model.Book;
+import org.work.domain.model.User;
 import org.work.domain.repository.BookRepository;
 import org.work.domain.service.BookService;
+import org.work.domain.service.BorrowService;
 import org.work.domain.service.CategoryService;
+import org.work.domain.service.UserService;
 import org.work.util.DateUtils;
 
 /**
@@ -24,10 +27,16 @@ public class DatabaseLoader implements CommandLineRunner {
     private final BookService bookService;
     @Autowired
     private final CategoryService categoryService;
+    @Autowired
+    private final BorrowService borrowService;
+    @Autowired
+    private final UserService userService;
 
-    public DatabaseLoader(BookService bookService, CategoryService categoryService) {
+    public DatabaseLoader(BookService bookService, CategoryService categoryService, BorrowService borrowService, UserService userService) {
         this.bookService = bookService;
         this.categoryService = categoryService;
+        this.borrowService = borrowService;
+        this.userService = userService;
     }
 
     @Override
@@ -48,5 +57,19 @@ public class DatabaseLoader implements CommandLineRunner {
         for (Book book : this.bookService.findByCategoryList_name("入門")) {
             System.out.println(book.getTitle());
         }
+
+        // remove all user
+        for (User user : userService.findAllSortedBy("name")) {
+            userService.remove(user.getId());
+        }
+
+        // borrow book;
+        System.out.println("**** Borrow book");
+        Book book = bookService.findByTitle("Domain Driven Design").get(0); // About...
+        User user = new User();
+        user.setName("akiraabe");
+        userService.register(user);
+        borrowService.execute(book, user, null);
+
     }
 }

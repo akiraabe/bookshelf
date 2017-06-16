@@ -43,3 +43,25 @@ CREATE TABLE if not exists book_category_list
 WITH (
 OIDS=FALSE
 );
+
+CREATE TABLE if not exists user_table
+(
+  id bigint NOT NULL,
+  name character varying(255),
+  CONSTRAINT user_table_pkey PRIMARY KEY (id)
+)
+WITH (
+OIDS=FALSE
+);
+
+CREATE TABLE if not exists borrow
+(
+  id bigint NOT NULL,
+  borrow_date date,
+  book_id bigint,
+  user_id bigint,
+  CONSTRAINT borrow_pkey PRIMARY KEY (id)
+)
+WITH (
+OIDS=FALSE
+);
