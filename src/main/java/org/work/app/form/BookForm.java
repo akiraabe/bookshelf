@@ -1,7 +1,6 @@
 package org.work.app.form;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;

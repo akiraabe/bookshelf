@@ -1,19 +1,14 @@
 package org.work.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.work.domain.dto.BookDto;
 import org.work.domain.model.Book;
 import org.work.domain.model.Borrow;
 import org.work.domain.model.User;
-import org.work.domain.repository.BookDtoRepositoryCustom;
-import org.work.domain.repository.BookRepository;
 import org.work.domain.repository.BorrowRepository;
 
 import javax.transaction.Transactional;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by akiraabe on 2017/06/17.

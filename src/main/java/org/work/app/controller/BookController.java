@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.work.app.form.BookForm;
 import org.work.domain.model.Book;
-import org.work.domain.repository.BookRepository;
 import org.work.domain.service.BookService;
 
 import java.util.List;
