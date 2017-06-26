@@ -9,6 +9,7 @@ import org.work.domain.repository.BorrowRepository;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by akiraabe on 2017/06/17.
@@ -42,6 +43,10 @@ public class BorrowService {
         borrow.setUserId(user.getId());
         borrow.setBorrowDate(dateOfBorrowing);
         borrowRepository.save(borrow);
+    }
+
+    public List<Borrow> findAll() {
+        return borrowRepository.findAll();
     }
 }
 
