@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Book</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <p>
+    <h2>The List of Borrows</h2>
+
+    <div th:each="detail : ${borrows}">
+        <span th:text="${detail.id}">id</span>
+        <span th:text="${detail.bookId}">bookId</span>
+        <span th:text="${detail.bookTitle}">bookTitle</span>
+        <span th:text="${detail.userId}">userId</span>
+        <span th:text="${detail.userName}">userName</span>
+        <span th:text="${detail.borrowDate}">2017-04-29</span>
+    </div>
+    </p>
+</section>
+</body>
+</html>

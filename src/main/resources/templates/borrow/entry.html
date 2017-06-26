@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Book domain</title></head>
+<body>
+<section layout:fragment="content">
+    <p>
+    <h2>Borrow the Book!</h2>
+    <form th:action="@{/borrow/execute}" th:object="${borrowForm}"
+          method="POST">
+        <div th:object="${borrowForm}">
+            <table border='0'>
+                <tr>
+                    <td>Id :</td>
+                    <td th:text="*{book.id}">1</td>
+                </tr>
+                <tr>
+                    <td>Title :</td>
+                    <td th:text="*{book.title}">hogehoge</td>
+                </tr>
+                <tr>
+                    <td>Author :</td>
+                    <td th:text="*{book.author}">author</td>
+                </tr>
+                <tr>
+                    <td>Publisher :</td>
+                    <td th:text="*{book.publisher}">publisher</td>
+                </tr>
+                <tr>
+                    <td>Publish date :</td>
+                    <td th:text="*{book.publishDate}">2017-04-29</td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="hidden" id="bookId" th:field="*{book.id}"  value="*{book.id}" />
+            </div>
+            <div class="form-group">
+                <label for="borrower">Borrower<span
+                        th:if="${#fields.hasErrors('borrower')}" class="text-danger"
+                        th:errors="*{borrower}">Error</span>
+                </label> <input type="text" class="form-control" id="borrower"
+                                name="borrower" th:field="*{borrower}" placeholder="Borrower"/>
+            </div>
+            <div class="form-group">
+                <label for="borrowDate">DateOfBorrow<span
+                        th:if="${#fields.hasErrors('borrowDate')}" class="text-danger"
+                        th:errors="*{borrowDate}">Error</span>
+                </label> <input type="text" class="form-control" id="borrowDate"
+                                name="borrowDate" th:field="*{borrowDate}" placeholder="Date Of Borrow"/>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+    </p>
+</section>
+</body>
+</html>
