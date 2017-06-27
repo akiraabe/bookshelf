@@ -17,7 +17,10 @@ import org.work.domain.model.Borrow;
 import org.work.domain.model.User;
 import org.work.domain.service.BookService;
 import org.work.domain.service.BorrowService;
+<<<<<<< HEAD
 import org.work.domain.dto.BorrowDto;
+=======
+>>>>>>> origin/master
 
 import java.util.Date;
 import java.util.List;
@@ -47,7 +50,11 @@ public class BorrowController {
 
     @RequestMapping(method = RequestMethod.GET)
     String list(Model model) {
+<<<<<<< HEAD
         List<BorrowDto> borrows = borrowService.findAll();
+=======
+        List<Borrow> borrows = borrowService.findAll();
+>>>>>>> origin/master
         if (borrows != null) borrows.forEach(System.out::println);
         model.addAttribute("borrows", borrows);
         return "borrow/list";
