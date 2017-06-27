@@ -10,17 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.work.app.form.BookForm;
 import org.work.app.form.BorrowForm;
 import org.work.domain.model.Book;
-import org.work.domain.model.Borrow;
 import org.work.domain.model.User;
 import org.work.domain.service.BookService;
 import org.work.domain.service.BorrowService;
-<<<<<<< HEAD
 import org.work.domain.dto.BorrowDto;
-=======
->>>>>>> origin/master
 
 import java.util.Date;
 import java.util.List;
@@ -50,11 +45,7 @@ public class BorrowController {
 
     @RequestMapping(method = RequestMethod.GET)
     String list(Model model) {
-<<<<<<< HEAD
         List<BorrowDto> borrows = borrowService.findAll();
-=======
-        List<Borrow> borrows = borrowService.findAll();
->>>>>>> origin/master
         if (borrows != null) borrows.forEach(System.out::println);
         model.addAttribute("borrows", borrows);
         return "borrow/list";
