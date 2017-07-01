@@ -21,16 +21,22 @@
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('btn').addEventListener('click', function () {
             var result = document.getElementById('result');
+            var result2 = document.getElementById('result2');
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) if (xhr.status === 200) { // sucess
                     var myData = JSON.parse(this.responseText);
-                    console.log('myData ->' + myData);
-                    result.textContent = xhr.responseText;
+                    //console.log('myData ->' + myData);
+                    console.log('author ->' + myData.author);
+                    console.log('title ->' + myData.title);
+                    result.textContent = 'title  : ' + myData.title; //xhr.responseText;
+                    result2.textContent = 'author : ' + myData.author; //xhr.responseText;
                 } else {
                     result.textContent = 'Sevrver error has occured';
+                    result2.textContent = '';
                 } else {
                     result.textContent = 'Processing...';
+                    result2.textContent = '';
                 }
             };
             // async processing to server
