@@ -44,6 +44,11 @@ public class BookController {
         return "book/list";
     }
 
+    @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
+    public String ajaxTest() {
+        return "book/ajax_test";
+    }
+
     @RequestMapping(value = "/input", method = RequestMethod.GET)
     public String input() {
         return "book/input";

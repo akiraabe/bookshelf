@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <title>JavaScript practice</title>
+</head>
+<body>
+<form>
+    <label for="bookId">Id:</label>
+    <input id="bookId" type="text" name="name" size="15"/>
+    <input id="btn" type="button" name="submit" value="execute"/>
+    <br/>
+    <label for="memo">Memo</label><br/>
+    <textarea id="memo" name="memo" cols="40" rows="4" maxlength="20" placeholder="memo"></textarea>
+</form>
+<div id="result"></div>
+<div id="result2"></div>
+<script>
+    // hello
+    console.log("Hello world!");
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('btn').addEventListener('click', function () {
+            var result = document.getElementById('result');
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) { // complete
+                    if (xhr.status === 200) { // sucess
+                        result.textContent = xhr.responseText;
+                    } else {
+                        result.textContent = 'Sevrver error has occured';
+                    }
+                } else {
+                    result.textContent = 'Processing...';
+                }
+            };
+            // async processing to server
+            xhr.open('GET', 'http://localhost:8080/api/book/' +
+                encodeURIComponent(document.getElementById('bookId').value), true); // async
+            // encodeURIComponent(document.getElementById('bookId').value), false); // sync
+            // console.log(encodeURIComponent(document.getElementById('bookId').value));
+            xhr.send(null);
+        }, false);
+    }, false);
+</script>
+</body>
+</html>
