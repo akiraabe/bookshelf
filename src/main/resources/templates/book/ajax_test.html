@@ -23,12 +23,12 @@
             var result = document.getElementById('result');
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) { // complete
-                    if (xhr.status === 200) { // sucess
-                        result.textContent = xhr.responseText;
-                    } else {
-                        result.textContent = 'Sevrver error has occured';
-                    }
+                if (xhr.readyState === 4) if (xhr.status === 200) { // sucess
+                    var myData = JSON.parse(this.responseText);
+                    console.log('myData ->' + myData);
+                    result.textContent = xhr.responseText;
+                } else {
+                    result.textContent = 'Sevrver error has occured';
                 } else {
                     result.textContent = 'Processing...';
                 }
